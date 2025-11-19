@@ -1,0 +1,118 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #e2beff; 
+    font-family: system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+
+.app-container {
+    width: 420px;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Titre */
+.app-container h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+/* Formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+form input,
+form select {
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+form button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4a7bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: hsl(0, 0%, 100%);
+    color: #000000;
+    padding: 8px 186px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* Liste */
+ul { padding: 0; margin: 0; list-style: none; }
+
+li {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+li span {
+    flex: 1;
+}
+
+li.done span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.priority-label {
+    background: #eef0f7;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+li a {
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    text-decoration: none;
+    color: white;
+}
+
+a.done-btn { background: #2ecc71; }
+a.edit-btn { background: #3498db; }
+a.delete-btn { background: #e74c3c; }
+
+/* Priorités simples */
+.task.haute { border-left: 4px solid #e74c3c; }
+.task.normale { border-left: 4px solid #4a7bff; }
+.task.basse { border-left: 4px solid #2ecc71; }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .app-container { width: 90%; }
+}

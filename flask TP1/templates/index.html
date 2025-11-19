@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="app-container">
+    <h1>Ma Todo List</h1>
+
+    {% if task_to_edit %}
+        <h2>Modifier la tâche</h2>
+        <form action="{{ url_for('update', task_id=task_to_edit.id) }}" method="POST">
+            <input type="text" name="title" value="{{ task_to_edit.title }}" required>
+
+            <select name="priority">
+                <option value="basse" {% if task_to_edit.priority == "basse" %}selected{% endif %}>Basse</option>
+                <option value="normale" {% if task_to_edit.priority == "normale" %}selected{% endif %}>Normale</option>
+                <option value="haute" {% if task_to_edit.priority == "haute" %}selected{% endif %}>Haute</option>
+            </select>
+
+            <button type="submit">Mettre à jour</button>
+            <a href="/" class="cancel-btn">Annuler</a>
+        </form>
+
+    {% else %}
+        <h2>Ajouter une tâche</h2>
+        <form action="{{ url_for('add') }}" method="POST">
+            <input type="text" name="title" placeholder="Nouvelle tâche">
+
+            <select name="priority">
+                <option value="basse">Basse</option>
+                <option value="normale" selected>Normale</option>
+                <option value="haute">Haute</option>
+            </select>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    {% endif %}
+
+
+
+
+
+    <ul>
+        {% for task in tasks %}
+        <li class="task {{ task.priority }} {% if task.done %}done{% endif %}">
+            <span>{{ task.title }}</span>
+
+            <span class="priority-label">
+                {% if task.priority == "haute" %} Haute{% endif %}
+                {% if task.priority == "normale" %}Normale{% endif %}
+                {% if task.priority == "basse" %} Basse{% endif %}
+            </span>
+
+            {% if not task.done %}
+                <a href="{{ url_for('done', task_id=task.id) }}" class="done-btn">Terminer</a>
+                <a href="{{ url_for('edit', task_id=task.id) }}" class="edit-btn">Modifier</a>
+            {% else %}
+                <a href="{{ url_for('delete', task_id=task.id) }}" class="delete-btn">Supprimer</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+   
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</div>
+{% endblock %}
